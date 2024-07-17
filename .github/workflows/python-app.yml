@@ -30,12 +30,12 @@ jobs:
         pip install -r requirements.txt
         pip install pytest allure-pytest
     
-    - name: Install Allure
+    - name: Install Allure commandline
       run: |
-        sudo apt-add-repository ppa:qameta/allure
-        sudo apt-get update
-        sudo apt-get install allure
-    
+        curl -o allure-2.13.8.tgz -Ls https://github.com/allure-framework/allure2/releases/download/2.13.8/allure-2.13.8.tgz
+        sudo tar -zxvf allure-2.13.8.tgz -C /opt/
+        sudo ln -s /opt/allure-2.13.8/bin/allure /usr/bin/allure
+        
     - name: Run tests and generate Allure results
       run: pytest --alluredir=allure-results
     
