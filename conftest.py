@@ -51,7 +51,7 @@ def flask_server(flask_app: Flask):
 @pytest.fixture(scope="session")
 def driver():
     options = webdriver.ChromeOptions()
-    # options.add_argument('--headless')  # Run Chrome in headless mode (optional)
+    options.add_argument('--headless')  # Run Chrome in headless mode (optional)
     options.add_argument('--no-sandbox')  # Bypass OS security model
     options.add_argument('--start-maximized') 
     service = ChromeService(ChromeDriverManager().install())
