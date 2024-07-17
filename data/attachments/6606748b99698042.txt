@@ -1,0 +1,3 @@
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [17/Jul/2024 23:40:11] "GET / HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [17/Jul/2024 23:40:12] "[32mPOST /add HTTP/1.1[0m" 302 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [17/Jul/2024 23:40:12] "GET / HTTP/1.1" 200 -
