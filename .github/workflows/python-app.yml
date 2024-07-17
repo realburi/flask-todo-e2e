@@ -5,16 +5,21 @@ on:
   pull_request:
     branches: [ master ]
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  test:
+  test-and-report:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     
     steps:
     - uses: actions/checkout@v3
@@ -53,15 +58,20 @@ jobs:
       with:
         name: allure-report
         path: allure-report
+
+    - name: Enable GitHub Pages
+      uses: actions/configure-pages@v3
+      with:
+        enablement: true
   
     - name: Setup Pages
-      uses: actions/configure-pages@v5
+      uses: actions/configure-pages@v3
       
     - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
+      uses: actions/upload-pages-artifact@v2
       with:
-        # Upload entire repository
         path: 'allure-report'
+
     - name: Deploy to GitHub Pages
       id: deployment
-      uses: actions/deploy-pages@v4
+      uses: actions/deploy-pages@v2
