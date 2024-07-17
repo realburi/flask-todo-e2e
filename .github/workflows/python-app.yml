@@ -1,4 +1,4 @@
-name: Python tests with Allure report
+name: Python tests with Allure report in GitHub Actions
 
 on:
   push:
