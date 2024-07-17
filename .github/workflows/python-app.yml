@@ -1,26 +1,17 @@
 name: Python tests with Allure report in GitHub Actions
+
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
 
 jobs:
   test-and-report:
     runs-on: ubuntu-latest
-    
     steps:
     - uses: actions/checkout@v3
     
@@ -59,11 +50,22 @@ jobs:
         name: allure-report
         path: allure-report
 
-    - name: Enable GitHub Pages
-      uses: actions/configure-pages@v3
+  deploy:
+    needs: test-and-report
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v3
       with:
-        enablement: true
-  
+        name: allure-report
+        path: allure-report
+
     - name: Setup Pages
       uses: actions/configure-pages@v3
       
