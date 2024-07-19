@@ -1,4 +1,6 @@
 # Introduction
+You can see the results something like this https://realburi.github.io/flask-todo-e2e/
+
 ## Prerequisites  
 1. Ensure you have JDK-6 and up and $JAVA_HOME set in your %PATH% 
 2. Create new python virtual environment, pc or mac
