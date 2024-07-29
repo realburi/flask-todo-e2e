@@ -3,3 +3,4 @@ allure-results
 env
 **/__pycache__
 *.db
+allure-report/
