@@ -10,6 +10,13 @@ class Todo(db.Model):
     content = db.Column(db.String(200), nullable=False)
     status = db.Column(db.Boolean, default=False)  # False for active, True for completed
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'content': self.content,
+            'status': self.status
+        }
+    
     def __repr__(self):
         return f'<Todo {self.id}>'
 
@@ -20,6 +27,10 @@ with app.app_context():
 def index():
     todos = Todo.query.all()
     return render_template('index.html', todos=todos)
+
+@app.route('/api/todo')
+def get_todos():
+    return jsonify([todo.to_dict() for todo in Todo.query.all()])
 
 @app.route('/add', methods=['POST'])
 def add():
