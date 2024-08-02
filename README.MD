@@ -1,3 +1,9 @@
+# About this Project
+Flask e2e testing example, from frontend inputs to database assertions. + Screenshots of results
+
+https://realburi.github.io/flask-todo-e2e/
+
+
 # Introduction
 You can see the results something like this https://realburi.github.io/flask-todo-e2e/
 
