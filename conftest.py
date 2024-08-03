@@ -54,8 +54,9 @@ def driver():
     options.add_argument('--headless')  # Run Chrome in headless mode (optional)
     options.add_argument('--no-sandbox')  # Bypass OS security model
     options.add_argument('--start-maximized') 
-    service = ChromeService(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=options)
+    # service = ChromeService(ChromeDriverManager().install())
+    # driver = webdriver.Chrome(service=service, options=options)
+    driver = webdriver.Chrome(options=options)
     yield driver
     driver.quit()
 
